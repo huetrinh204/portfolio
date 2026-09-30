@@ -1,0 +1,707 @@
+/* =============================================================================
+   PERSONAL PORTFOLIO — CUSTOM CSS
+   Supplements Tailwind CSS with design tokens, typography scale,
+   animations, and utility styles.
+   ============================================================================= */
+
+/* =============================================================================
+   1. DESIGN TOKENS (CSS Custom Properties)
+   ============================================================================= */
+
+:root {
+  /* Colors */
+  --color-bg:              #FFFFFF;
+  --color-bg-alt:          #F9F9F7;
+  --color-text-primary:    #0F0F0F;
+  --color-text-secondary:  #4B5563;
+  --color-text-muted:      #9CA3AF;
+  --color-accent:          #6366F1;
+  --color-accent-hover:    #4F46E5;
+  --color-accent-light:    #EEF2FF;
+  --color-border:          #E5E7EB;
+  --color-card-bg:         #FFFFFF;
+  --color-shadow:          rgba(0, 0, 0, 0.06);
+
+  /* Typography — Font Families */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body:    'Inter', sans-serif;
+
+  /* Typography — Size Scale */
+  --text-display: clamp(2.5rem, 5vw, 4.5rem);    /* 40–72px — h1 hero */
+  --text-h2:      clamp(1.75rem, 3vw, 2.5rem);    /* 28–40px — section titles */
+  --text-h3:      clamp(1.25rem, 2vw, 1.75rem);   /* 20–28px — card titles */
+  --text-h4:      1.125rem;                        /* 18px — sub-headings */
+  --text-body:    1rem;                            /* 16px — body */
+  --text-small:   0.875rem;                        /* 14px — tags, metadata */
+  --text-caption: 0.75rem;                         /* 12px — captions only */
+
+  /* Typography — Line Heights */
+  --leading-tight:  1.2;
+  --leading-normal: 1.6;
+  --leading-loose:  1.8;
+
+  /* Spacing */
+  --nav-height: 64px;
+}
+
+/* =============================================================================
+   2. BASE / RESET
+   ============================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* offset for sticky nav */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* =============================================================================
+   3. TYPOGRAPHY
+   ============================================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--text-display);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: var(--text-h2);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--text-h3);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--text-h4);
+  font-weight: 600;
+}
+
+p {
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+}
+
+/* =============================================================================
+   4. SCROLL REVEAL ANIMATIONS
+   ============================================================================= */
+
+/* Initial state — elements start hidden and shifted down */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* State when element enters the viewport */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delay variants — total max 600ms (500 + 100 delay) */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .reveal-delay-1,
+  .reveal-delay-2,
+  .reveal-delay-3 {
+    transition-delay: 0s;
+  }
+}
+
+/* =============================================================================
+   5. FOCUS INDICATORS (WCAG 2.1 AA)
+   ============================================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Remove default focus ring only when :focus-visible is supported */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip to main content link (keyboard navigation) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-bg);
+  color: var(--color-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* =============================================================================
+   6. GLOBAL HOVER TRANSITION UTILITY
+   ============================================================================= */
+
+a,
+button,
+.card,
+.skill-tag,
+[role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* =============================================================================
+   7. NAVIGATION ACTIVE STATE
+   ============================================================================= */
+
+nav a {
+  position: relative;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: var(--color-accent);
+}
+
+nav a.nav-active {
+  color: var(--color-accent);
+}
+
+nav a.nav-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+}
+
+/* =============================================================================
+   8. BUTTONS
+   ============================================================================= */
+
+/* Primary button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  min-height: 44px;   /* touch target WCAG 2.5.5 */
+  min-width: 44px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Secondary / outline button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--color-accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-accent);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent-light);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Ghost / text link button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: transparent;
+  color: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  min-height: 44px;
+}
+
+.btn-ghost:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Disabled state */
+button:disabled,
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* =============================================================================
+   9. SKILL TAGS
+   ============================================================================= */
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;          /* rounded-full */
+  border: 1px solid var(--color-border);
+  background-color: #F9FAFB;
+  color: #374151;
+  font-size: var(--text-small);
+  font-family: var(--font-body);
+  cursor: default;
+  user-select: none;
+}
+
+.skill-tag:hover {
+  border-color: var(--color-accent);
+  background-color: rgba(99, 102, 241, 0.05);
+  color: var(--color-accent);
+}
+
+/* =============================================================================
+   10. PROJECT CARDS
+   ============================================================================= */
+
+.card {
+  background-color: var(--color-card-bg);
+  border-radius: 1rem;       /* rounded-2xl */
+  box-shadow: 0 1px 3px var(--color-shadow);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Accent top-border on card hover */
+.card-hover-accent {
+  border-top: 2px solid transparent;
+}
+
+.card-hover-accent:hover {
+  border-top-color: var(--color-accent);
+}
+
+/* Project image placeholder */
+.project-placeholder {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* =============================================================================
+   11. NAVIGATION BAR
+   ============================================================================= */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Nav border visible on scroll (toggle with JS) */
+.nav-bar.scrolled {
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 1px 8px var(--color-shadow);
+}
+
+/* =============================================================================
+   12. SECTION ALTERNATING BACKGROUNDS
+   ============================================================================= */
+
+.section-alt {
+  background-color: var(--color-bg-alt);
+}
+
+/* =============================================================================
+   13. TIMELINE COMPONENT
+   ============================================================================= */
+
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background-color: var(--color-border);
+  border-radius: 1px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.625rem;
+  top: 0.4rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+.timeline-year {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-label {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-desc {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+/* =============================================================================
+   14. EYEBROW / SECTION LABEL
+   ============================================================================= */
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.75rem;
+}
+
+/* =============================================================================
+   15. TEXT UTILITIES
+   ============================================================================= */
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* =============================================================================
+   16. SCREEN READER ONLY UTILITY
+   ============================================================================= */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only.focusable:focus,
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: initial;
+  margin: initial;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* =============================================================================
+   17. PRINT STYLES
+   ============================================================================= */
+
+@media print {
+  .nav-bar,
+  .reveal,
+  .btn-primary,
+  .btn-secondary {
+    display: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000000;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #555555;
+  }
+}
+
+/* =============================================================================
+   18. LANGUAGE SWITCHER
+   ============================================================================= */
+
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: visible;
+  user-select: none;
+}
+
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  line-height: 1;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.lang-trigger:hover {
+  color: var(--color-accent);
+  background-color: var(--color-accent-light);
+}
+
+.lang-trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.lang-trigger-flag {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-trigger-chevron {
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+
+.lang-switcher-open .lang-trigger-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-flag {
+  display: block;
+  overflow: visible;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(15, 15, 15, 0.12);
+  flex-shrink: 0;
+}
+
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: auto;
+  z-index: 60;
+  min-width: max-content;
+  padding: 6px 12px 6px 8px;
+  overflow: visible;
+  background: #fff;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 15, 15, 0.1);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 0 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text, #0f0f0f);
+  text-align: left;
+  transition: background-color 150ms ease;
+}
+
+.lang-option:hover {
+  background-color: var(--color-accent-light);
+}
+
+.lang-option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.lang-option-flag {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding-left: 1px;
+}
+
+.lang-option-label {
+  white-space: nowrap;
+}
+
+#mobile-menu .lang-switcher {
+  width: 100%;
+}
+
+#mobile-menu .lang-trigger {
+  width: 100%;
+  justify-content: space-between;
+}
+
+#mobile-menu .lang-menu {
+  position: static;
+  left: auto;
+  margin-top: 6px;
+  width: 100%;
+  padding: 4px;
+  box-shadow: none;
+}
+
+#mobile-menu .lang-option {
+  padding: 8px 10px;
+}

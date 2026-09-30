@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO -->
+  <title>HABITU Case Study — Thạch Thị Huệ Trinh</title>
+  <meta name="description"
+    content="HABITU — a PHP/MySQL web platform for healthy habit tracking and community. Built by Thạch Thị Huệ Trinh.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HABITU Case Study — Thạch Thị Huệ Trinh">
+  <meta property="og:description"
+    content="HABITU — a PHP/MySQL web platform for healthy habit tracking and community. Built by Thạch Thị Huệ Trinh.">
+  <meta property="og:image" content="portfolio/cv.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts — preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind config must come BEFORE cdn.tailwindcss.com -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent:        '#6366F1',
+            'accent-hover':'#4F46E5',
+            'accent-light':'#EEF2FF',
+          },
+          fontFamily: {
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Case study hero — lighter HABITU palette */
+    .case-study-hero {
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    /* Stack pill in hero — dark text on light background */
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.875rem;
+      border-radius: 9999px;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* Feature card in key features grid */
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      transition: box-shadow 200ms ease, border-color 200ms ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-accent);
+    }
+
+    /* Lesson card */
+    .lesson-card {
+      background: #ffffff;
+      border: 1px solid var(--color-border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: box-shadow 200ms ease;
+    }
+
+    .lesson-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Screenshot placeholder card */
+    .screenshot-placeholder {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Skip to main content (keyboard navigation) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =====================================================================
+       NAVIGATION — simplified, back button only
+       ===================================================================== -->
+  <header>
+    <nav class="nav-bar" id="site-nav" aria-label="Site navigation">
+      <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+        <a href="index.html"
+           class="font-display font-extrabold text-lg tracking-tight text-[#0F0F0F] hover:text-accent transition-colors">
+          Huệ Trinh
+        </a>
+        <div id="case-study-nav-actions" class="flex items-center gap-4">
+          <a href="index.html#projects" class="btn-ghost text-sm flex items-center gap-1" data-i18n="viora.backPortfolio">
+            ← Back to Portfolio
+          </a>
+          <!-- lang switcher injected here by i18n.js -->
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- =====================================================================
+       MAIN CONTENT
+       ===================================================================== -->
+  <main id="main-content">
+
+    <!-- Case Study Hero -->
+    <section class="case-study-hero" aria-label="HABITU case study hero">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="block text-sm font-semibold tracking-widest uppercase mb-3"
+              style="color: var(--color-accent);">Case Study 02</span>
+
+        <h1 class="font-display font-extrabold mb-3 text-[#0F0F0F]"
+            style="font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.1;">
+          HABITU
+        </h1>
+
+        <p class="text-lg font-medium mb-6 text-[#4B5563]">
+          Web Platform — Healthy Habit Tracking
+        </p>
+
+        <!-- Stack pills -->
+        <div class="flex flex-wrap justify-center gap-2 mb-5" role="list" aria-label="Technology stack">
+          <span class="hero-pill" role="listitem">PHP</span>
+          <span class="hero-pill" role="listitem">MySQL</span>
+          <span class="hero-pill" role="listitem">Tailwind CSS</span>
+          <span class="hero-pill" role="listitem">Google OAuth</span>
+          <span class="hero-pill" role="listitem">PHPMailer</span>
+        </div>
+
+        <!-- Role line -->
+        <p class="text-sm font-medium text-[#4B5563]">
+          Role: Full Stack Developer
+        </p>
+      </div>
+    </section>
+
+    <!-- 6 content sections — rendered by inline script below -->
+    <div id="habitu-sections"></div>
+
+  </main>
+
+  <!-- =====================================================================
+       FOOTER
+       ===================================================================== -->
+  <footer class="bg-white border-t border-[#E5E7EB] py-8 text-center">
+    <p class="text-sm text-muted">&copy; 2026 Thạch Thị Huệ Trinh</p>
+    <p class="text-sm mt-2">
+      <a href="index.html#projects" class="text-accent hover:underline" data-i18n="viora.backPortfolio">← Back to Portfolio</a>
+    </p>
+  </footer>
+
+  <!-- =====================================================================
+       SCRIPTS
+       ===================================================================== -->
+  <script src="data/content.js" defer></script>
+  <script src="data/i18n.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // ------------------------------------------------------------------
+      // Nav scrolled state
+      // ------------------------------------------------------------------
+      var nav = document.getElementById('site-nav');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 20) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+
+      // ------------------------------------------------------------------
+      // Init i18n (injects lang switcher + applies current lang)
+      // ------------------------------------------------------------------
+      if (typeof window.initI18n === 'function') {
+        window.initI18n();
+      }
+
+      // ------------------------------------------------------------------
+      // Helpers
+      // ------------------------------------------------------------------
+      function el(tag, className, html) {
+        var e = document.createElement(tag);
+        if (className) e.className = className;
+        if (html !== undefined) e.innerHTML = html;
+        return e;
+      }
+
+      function section(bgClass, content) {
+        var s = el('section', 'py-16 reveal ' + bgClass);
+        var inner = el('div', 'max-w-4xl mx-auto px-6');
+        inner.appendChild(content);
+        s.appendChild(inner);
+        return s;
+      }
+
+      function eyebrow(text) {
+        return el('span', 'eyebrow', text);
+      }
+
+      function sectionTitle(text) {
+        var h = el('h2', 'font-display font-bold mt-2 mb-6 text-[#0F0F0F]');
+        h.textContent = text;
+        h.style.fontSize = 'var(--text-h2)';
+        return h;
+      }
+
+      function bodyP(text) {
+        var p = el('p', 'text-[#4B5563] leading-relaxed');
+        p.style.lineHeight = 'var(--leading-loose)';
+        p.textContent = text;
+        return p;
+      }
+
+      var container = document.getElementById('habitu-sections');
+      var data = window.HABITU_CONTENT;
+      var altBg = false;
+
+      function nextBg() {
+        var cls = altBg ? 'section-alt' : 'bg-white';
+        altBg = !altBg;
+        return cls;
+      }
+
+      // ------------------------------------------------------------------
+      // 1. Overview
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.overview;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('Overview'));
+        wrap.appendChild(sectionTitle(d.title));
+        wrap.appendChild(bodyP(d.body));
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // 2. Tech Stack
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.techStack;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('Tech Stack'));
+        wrap.appendChild(sectionTitle(d.title));
+
+        var grid = el('div', 'space-y-4');
+        d.stack.forEach(function (row) {
+          var rowEl = el('div',
+            'grid sm:grid-cols-[160px_1fr] gap-3 items-start py-3 border-b border-[#E5E7EB] last:border-b-0');
+
+          var layerName = el('span',
+            'text-sm font-semibold text-[#0F0F0F]');
+          layerName.textContent = row.layer;
+
+          var tagsWrap = el('div', 'flex flex-wrap gap-2');
+          row.technologies.forEach(function (tech) {
+            var tag = el('span',
+              'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium',
+              '');
+            tag.style.background = 'var(--color-accent-light)';
+            tag.style.color = 'var(--color-accent)';
+            tag.textContent = tech;
+            tagsWrap.appendChild(tag);
+          });
+
+          rowEl.appendChild(layerName);
+          rowEl.appendChild(tagsWrap);
+          grid.appendChild(rowEl);
+        });
+        wrap.appendChild(grid);
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // 3. My Role
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.myRole;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('My Role'));
+
+        var roleBadge = el('span',
+          'inline-flex items-center px-4 py-1.5 rounded-full text-sm font-semibold mt-2 mb-4',
+          '');
+        roleBadge.style.background = 'var(--color-accent)';
+        roleBadge.style.color = '#ffffff';
+        roleBadge.textContent = d.role;
+        wrap.appendChild(roleBadge);
+
+        wrap.appendChild(sectionTitle(d.title));
+        wrap.appendChild(bodyP(d.body));
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // 4. Key Features
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.keyFeatures;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('Features'));
+        wrap.appendChild(sectionTitle(d.title));
+
+        var grid = el('div', 'grid sm:grid-cols-2 gap-4');
+        d.features.forEach(function (feat) {
+          var card = el('div', 'feature-card');
+          var name = el('p', 'font-semibold text-[#0F0F0F] text-sm mb-1');
+          name.textContent = feat.name;
+          var detail = el('p', 'text-[#4B5563] text-sm');
+          detail.style.lineHeight = 'var(--leading-normal)';
+          detail.textContent = feat.detail;
+          card.appendChild(name);
+          card.appendChild(detail);
+          grid.appendChild(card);
+        });
+        wrap.appendChild(grid);
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // 5. Screenshots
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.screenshots;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('Screenshots'));
+        wrap.appendChild(sectionTitle(d.title));
+        wrap.appendChild(bodyP(d.note));
+
+        var grid = el('div', 'grid sm:grid-cols-2 gap-4 mt-6');
+        d.placeholders.forEach(function (ph) {
+          var card = el('div', 'screenshot-placeholder');
+          card.style.background = ph.gradient;
+          var label = el('span',
+            'text-white font-semibold text-sm text-center px-4',
+            '');
+          label.style.fontFamily = 'var(--font-display)';
+          label.style.letterSpacing = '0.03em';
+          label.textContent = ph.label;
+          card.appendChild(label);
+          grid.appendChild(card);
+        });
+        wrap.appendChild(grid);
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // 6. Lessons Learned
+      // ------------------------------------------------------------------
+      (function () {
+        var d = data.lessonsLearned;
+        var wrap = el('div');
+        wrap.appendChild(eyebrow('Reflections'));
+        wrap.appendChild(sectionTitle(d.title));
+
+        var grid = el('div', 'grid sm:grid-cols-2 gap-5 mt-2');
+        d.items.forEach(function (item) {
+          var card = el('div', 'lesson-card');
+          var area = el('p',
+            'text-xs font-bold uppercase tracking-widest mb-2',
+            '');
+          area.style.color = 'var(--color-accent)';
+          area.textContent = item.area;
+          var lesson = el('p', 'text-[#4B5563] text-sm');
+          lesson.style.lineHeight = 'var(--leading-loose)';
+          lesson.textContent = item.lesson;
+          card.appendChild(area);
+          card.appendChild(lesson);
+          grid.appendChild(card);
+        });
+        wrap.appendChild(grid);
+        container.appendChild(section(nextBg(), wrap));
+      })();
+
+      // ------------------------------------------------------------------
+      // Init scroll reveal
+      // ------------------------------------------------------------------
+      if (window.initReveal) {
+        window.initReveal();
+      }
+
+    });
+  </script>
+
+</body>
+</html>
